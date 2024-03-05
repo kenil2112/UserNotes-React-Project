@@ -1,0 +1,125 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px;
+    /* margin-top: 10px;Add some top margin for spacing */
+    /* width: 20%;
+    border-radius: 5px; */
+
+}
+
+
+.card:hover {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* Shadow effect on hover */
+}
+
+.card {
+    /*  */
+    width: auto;
+    height: auto;
+    /* Adjust this value as needed */
+    margin: 10px;
+    /* Adjust this value as needed */
+    transition: box-shadow 0.3s;
+    /* Smooth transition for the shadow effect */
+    width: 190px;
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 5px;
+    margin-right: 10px;
+    /* Add some bottom margin for spacing between items */
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.property1 {
+    border: 1PX solid black;
+    border-radius: 4px;
+    margin: auto;
+    height: auto;
+}
+
+
+.inputfield1 {
+    border: none;
+    margin-bottom: 10px;
+}
+
+.property1 {
+    width: auto;
+    padding-left: 10px;
+    color: #6b6b47;
+    padding-top: 10px;
+    height: auto;
+}
+
+.changebutton {
+    background-color: aqua;
+    border-radius: 7px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.Layout {
+    background-color: #fff;
+}
+
+.HHEader {
+    padding: 0px;
+    background-color: #fff;
+    text-align: "center";
+    text-align: center;
+}
+
+.UpdateButton {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.CancelButton {
+    margin-left: 10px;
+}
+
+.TextAreaInput {
+    margin-bottom: 7px;
+    padding-left: 10px;
+    border: none;
+}
+
+.ContentDiv {
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.ContentCSS {
+    margin: 24px 16px 0px;
+}
+
+.ClickedDiv {
+    margin-bottom: 9px;
+}
+
+.SearchBar {
+    margin-bottom: 7px;
+}
+
+.SearchDiv {
+    display: flex;
+    align-items: center;
+}
+
+.SearchCancelButton {
+    margin-bottom: 6px;
+    margin-left: 7px;
+}
