@@ -162,7 +162,7 @@ function CContent() {
 
                                 </Button>
                                 <Button type='primary' className='CancelButton'
-                                    onClick={CancelInput}>Cancel</Button>
+                                    onClick={CancelInput}>Close</Button>
                                 <Button type='primary' className='CancelButton'
                                     onClick={ResetValue}>Reset</Button>
 
