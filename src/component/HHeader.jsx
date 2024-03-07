@@ -4,7 +4,7 @@ const { Header } = Layout;
 import '../App.css'
 
 
-function HHeader() {
+function AppHeader() {
     return (
         <Header className='HHEader'>
             Header
@@ -12,4 +12,4 @@ function HHeader() {
     )
 }
 
-export default HHeader
+export default AppHeader

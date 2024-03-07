@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 const { Sider } = Layout;
 
 
-function SSider() {
+function AppSider() {
     const dispatch = useDispatch()
 
     const items = ["All", "a", "b", "c", "d"].map(
@@ -41,4 +41,4 @@ function SSider() {
     )
 }
 
-export default SSider
+export default AppSider

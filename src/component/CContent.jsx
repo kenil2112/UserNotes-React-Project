@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Layout } from 'antd';
 import '../App.css'
-const { Content } = Layout;
 import { Button, Input, Radio, Card, Space } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import { addCard, deleteCard, updateCard } from '../features/todo/todoSlice'
 import { AudioOutlined } from '@ant-design/icons';
 
+const { Content } = Layout;
 const { Search } = Input;
 
 const suffix = (
@@ -20,7 +20,11 @@ const suffix = (
 );
 
 
-function CContent() {
+function AppContent() {
+    const dispatch = useDispatch()
+    const todos = useSelector(state => state.todos)
+    const SelectedOptionss = useSelector(state => state.SelectedOption)
+
     const [IsEdit, setIsEdit] = useState(false);
     const [ShowPopup, setShowPopup] = useState(false);
     // 3 field value
@@ -31,12 +35,7 @@ function CContent() {
     // SearchBar
     const [SearchQuery, setSearchQuery] = useState("");
     const [SSearch, setSSearch] = useState(false);
-
-
-
-    const dispatch = useDispatch()
-    const todos = useSelector(state => state.todos)
-    const SelectedOptionss = useSelector(state => state.SelectedOption)
+    // const [CustomSize, setCustomSize] = React.useState(0);
 
     const [EditableValue, setEditableValue] = useState([{
         id: "#0921821983", title: "maths"
@@ -122,55 +121,71 @@ function CContent() {
             <div id='primediv' className='property1'>
                 {
                     IsEdit ?
-                        <div>
-                            <div className='ContentDiv'>
-                                <div className='SearchDiv'>
-                                    <Search placeholder="input search text" className='SearchBar'
-                                        value={SearchQuery}
-                                        onChange={(e) => HandleSearch(e)}
-                                        onSearch={() => onSearch()} enterButton />
-                                    <Button onClick={RemoveSearch} className='SearchCancelButton'
-                                        type='primary'
-                                    >Cancel</Button></div>
-
-                                <Input type="text" className='inputfield1'
-                                    value={ShowPopup ? EditableValue.title : Initialvalue}
-                                    onChange={(e) => FirstInputChange(e)} placeholder='Title' />
-
-
-                                <Input placeholder='Take a note...'
-                                    value={ShowPopup ? EditableValue.note : SecondValue}
-                                    onChange={(e) => SecondInputChange(e)}
-                                    className='textareainput TextAreaInput'
+                        // <Space direction='vertical' size={CustomSize}>
+                        <div className='ContentDiv'>
+                            <div className='SearchDiv'>
+                                {/* <Space
+                                direction="horizontal"
+                            // size={'large'}
+                            > */}
+                                <Search placeholder="input search text" className='SearchBar'
+                                    value={SearchQuery}
+                                    onChange={(e) => HandleSearch(e)}
+                                    onSearch={() => onSearch()} enterButton />
+                                <Button onClick={RemoveSearch} className='SearchCancelButton'
+                                    type='primary'
                                 >
-                                </Input>
-
-                                <Radio.Group
-                                    onChange={ShowPopup ? HandleRadioChange : HandleRadioUpdate}
-                                    value={ShowPopup ? EditableValue.Radio : SelectedValue}
-                                    style={{ marginBottom: "5px" }}>
-                                    <Radio value={'a'}>Option A</Radio>
-                                    <Radio value={'b'}>Option B</Radio>
-                                    <Radio value={'c'}>Option C</Radio>
-                                    <Radio value={'d'}>Option D</Radio>
-                                </Radio.Group>
-
-                                <Button type="primary"
-                                    onClick={ShowPopup ? () => EditData(EditableValue.id) : PrintArray}
-                                >
-                                    {ShowPopup ? "Save" : "Submit"}
-
+                                    Cancel
                                 </Button>
-                                <Button type='primary' className='CancelButton'
-                                    onClick={CancelInput}>Close</Button>
-                                <Button type='primary' className='CancelButton'
-                                    onClick={ResetValue}>Reset</Button>
-
+                                {/* </Space> */}
                             </div>
+
+                            <Input type="text" className='inputfield1'
+                                value={ShowPopup ? EditableValue.title : Initialvalue}
+                                onChange={(e) => FirstInputChange(e)} placeholder='Title' />
+
+
+                            <Input placeholder='Take a note...'
+                                value={ShowPopup ? EditableValue.note : SecondValue}
+                                onChange={(e) => SecondInputChange(e)}
+                                className='textareainput TextAreaInput'
+                            >
+                            </Input>
+
+                            <Radio.Group
+                                onChange={ShowPopup ? HandleRadioChange : HandleRadioUpdate}
+                                value={ShowPopup ? EditableValue.Radio : SelectedValue}
+                                style={{ marginBottom: "5px" }}>
+                                <Radio value={'a'}>Option A</Radio>
+                                <Radio value={'b'}>Option B</Radio>
+                                <Radio value={'c'}>Option C</Radio>
+                                <Radio value={'d'}>Option D</Radio>
+                            </Radio.Group>
+                            {/* <Space direction='horizontal'> */}
+                            <Button type="primary"
+                                onClick={ShowPopup ? () => EditData(EditableValue.id) : PrintArray}
+                            >
+                                {ShowPopup ? "Save" : "Submit"}
+
+                            </Button>
+                            <Button type='primary'
+                                className='CancelButton'
+                                onClick={CancelInput}
+                            >Close
+                            </Button>
+                            <Button type='primary'
+                                className='CancelButton'
+                                onClick={ResetValue}
+                            >Reset
+                            </Button>
+                            {/* </Space> */}
                         </div>
+                        // </Space>
                         :
                         <div className="ClickedDiv" onClick={HandleEvent}
-                        >Take a note...</div>
+                        >
+                            Take a note...
+                        </div>
                 }
             </div>
 
@@ -262,4 +277,4 @@ function CContent() {
     )
 }
 
-export default CContent
+export default AppContent

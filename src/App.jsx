@@ -1,22 +1,20 @@
 import { useState } from 'react'
+
 import './App.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { addCard, deleteCard, updateCard } from './features/todo/todoSlice'
-import { Layout, Menu, theme } from 'antd';
-import { HHeader, CContent, FFooter, SSider } from './component';
+import { Layout } from 'antd';
+import { AppHeader, AppContent, AppFooter, AppSider } from './component';
 
 function App() {
-  const [count, setCount] = useState(0)
   return (
     <>
       <Layout style={{ minHeight: '100vh' }}>
-        <SSider />
+        <AppSider />
         <Layout>
-          <HHeader />
+          <AppHeader />
           <Layout className='Layout'>
-            <CContent />
+            <AppContent />
           </Layout>
-          <FFooter />
+          <AppFooter />
         </Layout>
 
       </Layout >

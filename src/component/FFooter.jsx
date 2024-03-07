@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout } from 'antd';
 const { Footer } = Layout;
 
-function FFooter() {
+function AppFooter() {
     return (
         <Footer
             style={{
@@ -15,4 +15,4 @@ function FFooter() {
     )
 }
 
-export default FFooter
+export default AppFooter
