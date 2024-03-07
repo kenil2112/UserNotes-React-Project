@@ -43,11 +43,11 @@ function AppContent() {
     }]);
 
 
-    const HandleEvent = () => {
+    const OnClickHandleEvent = () => {
         setIsEdit(true);
     }
 
-    const PrintArray = (e) => {
+    const OnSubmitClick = (e) => {
         e.preventDefault();
         setInitialValue("");
         setSecondValue("");
@@ -73,11 +73,11 @@ function AppContent() {
     const HandleRadioUpdate = (e) => {
         setSelectedValue(e.target.value);
     };
-    const HandleRadioChange = (e) => {
+    const OnHandleRadioChange = (e) => {
         setEditableValue({ ...EditableValue, Radio: e.target.value });
     }
 
-    const ResetValue = () => {
+    const OnResetClick = () => {
         setInitialValue("");
         setSecondValue("");
         setSelectedValue("");
@@ -86,11 +86,11 @@ function AppContent() {
         setSSearch(false);
         setShowPopup(false)
     }
-    const CancelInput = () => {
+    const OnCloseClick = () => {
         setIsEdit(false);
     }
 
-    const EditData = (idd) => {
+    const OnSaveClick = (idd) => {
         dispatch(updateCard({
             id: idd, title: EditableValue.title,
             note: EditableValue.note, Radio: EditableValue.Radio
@@ -99,20 +99,20 @@ function AppContent() {
         setShowPopup(false);
     }
 
-    const UpdateValue = (item) => {
+    const OnUpdateClick = (item) => {
         setShowPopup(true);
         setEditableValue(item)
     }
 
-    const DeleteValue = (id) => {
+    const OnDeleteClick = (id) => {
         dispatch(deleteCard(id))
     }
 
-    const HandleSearch = (e) => {
+    const ChangeHandleSearch = (e) => {
         setSearchQuery(e.target.value)
     }
-    const onSearch = () => setSSearch(true);
-    const RemoveSearch = () => { setSSearch(false); setSearchQuery(""); }
+    const onSearchClick = () => setSSearch(true);
+    const OnRemoveSearchClick = () => { setSSearch(false); setSearchQuery(""); }
 
 
     return (
@@ -130,9 +130,9 @@ function AppContent() {
                             > */}
                                 <Search placeholder="input search text" className='SearchBar'
                                     value={SearchQuery}
-                                    onChange={(e) => HandleSearch(e)}
-                                    onSearch={() => onSearch()} enterButton />
-                                <Button onClick={RemoveSearch} className='SearchCancelButton'
+                                    onChange={(e) => ChangeHandleSearch(e)}
+                                    onSearch={() => onSearchClick()} enterButton />
+                                <Button onClick={OnRemoveSearchClick} className='SearchCancelButton'
                                     type='primary'
                                 >
                                     Cancel
@@ -153,7 +153,7 @@ function AppContent() {
                             </Input>
 
                             <Radio.Group
-                                onChange={ShowPopup ? HandleRadioChange : HandleRadioUpdate}
+                                onChange={ShowPopup ? OnHandleRadioChange : HandleRadioUpdate}
                                 value={ShowPopup ? EditableValue.Radio : SelectedValue}
                                 style={{ marginBottom: "5px" }}>
                                 <Radio value={'a'}>Option A</Radio>
@@ -163,26 +163,26 @@ function AppContent() {
                             </Radio.Group>
                             {/* <Space direction='horizontal'> */}
                             <Button type="primary"
-                                onClick={ShowPopup ? () => EditData(EditableValue.id) : PrintArray}
+                                onClick={ShowPopup ? () => OnSaveClick(EditableValue.id) : OnSubmitClick}
                             >
                                 {ShowPopup ? "Save" : "Submit"}
 
                             </Button>
                             <Button type='primary'
                                 className='CancelButton'
-                                onClick={CancelInput}
+                                onClick={OnCloseClick}
                             >Close
                             </Button>
                             <Button type='primary'
                                 className='CancelButton'
-                                onClick={ResetValue}
+                                onClick={OnResetClick}
                             >Reset
                             </Button>
                             {/* </Space> */}
                         </div>
                         // </Space>
                         :
-                        <div className="ClickedDiv" onClick={HandleEvent}
+                        <div className="ClickedDiv" onClick={OnClickHandleEvent}
                         >
                             Take a note...
                         </div>
@@ -218,14 +218,14 @@ function AppContent() {
                             <Button
                                 type="primary"
                                 className='UpdateButton'
-                                onClick={() => UpdateValue(item)}
+                                onClick={() => OnUpdateClick(item)}
                             >
                                 Update
                             </Button>
 
                             <Button
                                 type="primary"
-                                onClick={() => DeleteValue(item.id)}
+                                onClick={() => OnDeleteClick(item.id)}
                             >
                                 Delete
                             </Button>
@@ -247,7 +247,7 @@ function AppContent() {
                         > Update</Button>
 
                         <Button type="primary"
-                            onClick={() => DeleteValue(item.id)}
+                            onClick={() => OnDeleteClick(item.id)}
                         >Delete</Button>
                     </div>
                 ))
@@ -267,7 +267,7 @@ function AppContent() {
                             > Update</Button>
 
                             <Button type="primary"
-                                onClick={() => DeleteValue(item.id)}
+                                onClick={() => OnDeleteClick(item.id)}
                             >Delete</Button>
                         </div>
                     ))
