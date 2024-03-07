@@ -84,6 +84,7 @@ function CContent() {
         setSelectedValue("");
         setEditableValue([]);
         setSearchQuery("");
+        setSSearch(false);
         setShowPopup(false)
     }
     const CancelInput = () => {
