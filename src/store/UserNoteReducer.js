@@ -34,7 +34,7 @@ const SETSELECTEDOPTION = (state, action) => {
 }
 
 
-export const todoSlice = createSlice({
+export const UserNoteReducer = createSlice({
     name: 'todo',
     initialState,
     reducers: {
@@ -45,6 +45,6 @@ export const todoSlice = createSlice({
     }
 })
 
-export const { addCard, deleteCard, updateCard, setSelectedOption } = todoSlice.actions
+export const { addCard, deleteCard, updateCard, setSelectedOption } = UserNoteReducer.actions
 
-export default todoSlice.reducer
+export default UserNoteReducer.reducer

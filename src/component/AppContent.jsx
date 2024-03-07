@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import '../App.css'
 import { Button, Input, Radio, Card, Space } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
-import { addCard, deleteCard, updateCard } from '../features/todo/todoSlice'
+import { addCard, deleteCard, updateCard } from '../store/UserNoteReducer'
 import { AudioOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
