@@ -9,8 +9,8 @@ const { Sider } = Layout;
 
 function AppSider() {
     const dispatch = useDispatch()
-
-    const items = ["All", "a", "b", "c", "d"].map(
+    const category = ["All", "a", "b", "c", "d"];
+    const items = category.map(
         (optiondata, index) => ({
             key: index.toString(),
             icon: `Option ${optiondata}`,

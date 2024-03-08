@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Layout } from 'antd';
-import '../App.css'
+// import '../App.css'
 import { Button, Input, Radio, Card, Space } from 'antd';
 import { useSelector, useDispatch } from 'react-redux'
 import { addCard, deleteCard, updateCard } from '../store/UserNoteReducer'
@@ -35,7 +35,7 @@ function AppContent() {
     // SearchBar
     const [SearchQuery, setSearchQuery] = useState("");
     const [SSearch, setSSearch] = useState(false);
-    // const [CustomSize, setCustomSize] = React.useState(0);
+    const [CustomSize, setCustomSize] = useState(7);
 
     const [EditableValue, setEditableValue] = useState([{
         id: "#0921821983", title: "maths"
@@ -117,163 +117,142 @@ function AppContent() {
 
     return (
 
-        <Content className="ContentCSS">
-            <div id='primediv' className='property1'>
-                {
-                    IsEdit ?
-                        // <Space direction='vertical' size={CustomSize}>
-                        <div className='ContentDiv'>
-                            <div className='SearchDiv'>
-                                {/* <Space
-                                direction="horizontal"
-                            // size={'large'}
-                            > */}
-                                <Search placeholder="input search text" className='SearchBar'
-                                    value={SearchQuery}
-                                    onChange={(e) => ChangeHandleSearch(e)}
-                                    onSearch={() => onSearchClick()} enterButton />
-                                <Button onClick={OnRemoveSearchClick} className='SearchCancelButton'
-                                    type='primary'
+        <Content style={{ padding: "10px" }}
+        // className="ContentCSS"
+        >
+            <Card bodyStyle={{ padding: 8 }} >
+                <Space align='center' block='true'>
+                    {
+                        IsEdit ?
+                            <Space block='true' direction='vertical' size={CustomSize} >
+                                {/* // <div className='ContentDiv'> */}
+                                {/* <div className='SearchDiv'> */}
+                                <Space
+                                    direction="horizontal"
+                                // size={'large'}
                                 >
-                                    Cancel
-                                </Button>
-                                {/* </Space> */}
+                                    <Search placeholder="input search text"
+                                        // className='SearchBar'
+                                        value={SearchQuery}
+                                        onChange={(e) => ChangeHandleSearch(e)}
+                                        onSearch={() => onSearchClick()} enterButton />
+                                    <Button onClick={OnRemoveSearchClick}
+                                        // className='SearchCancelButton'
+                                        type='primary'
+                                    >
+                                        Cancel
+                                    </Button>
+                                </Space>
+                                {/* </div> */}
+                                <Input type="text"
+                                    className='inputfield1'
+                                    value={ShowPopup ? EditableValue.title : Initialvalue}
+                                    onChange={(e) => FirstInputChange(e)} placeholder='Title' />
+
+
+                                <Input placeholder='Take a note...'
+                                    value={ShowPopup ? EditableValue.note : SecondValue}
+                                    onChange={(e) => SecondInputChange(e)}
+                                    className='textareainput TextAreaInput'
+                                >
+                                </Input>
+                                <Space direction='horizontal'>
+                                    <Radio.Group
+                                        onChange={ShowPopup ? OnHandleRadioChange : HandleRadioUpdate}
+                                        value={ShowPopup ? EditableValue.Radio : SelectedValue}
+                                        style={{ marginBottom: "5px" }}>
+                                        <Radio value={'a'}>Option A</Radio>
+                                        <Radio value={'b'}>Option B</Radio>
+                                        <Radio value={'c'}>Option C</Radio>
+                                        <Radio value={'d'}>Option D</Radio>
+                                    </Radio.Group>
+                                    <Button type="primary"
+                                        onClick={ShowPopup ? () => OnSaveClick(EditableValue.id) : OnSubmitClick}
+                                    >
+                                        {ShowPopup ? "Save" : "Submit"}
+
+                                    </Button>
+                                    <Button type='primary'
+                                        // className='CancelButton'
+                                        onClick={OnCloseClick}
+                                    >Close
+                                    </Button>
+                                    <Button type='primary'
+                                        // className='CancelButton'
+                                        onClick={OnResetClick}
+                                    >Reset
+                                    </Button>
+                                </Space>
+                                {/* </div> */}
+                            </Space >
+                            :
+                            <div
+                                // className="ClickedDiv" 
+                                onClick={OnClickHandleEvent}
+                            >
+                                Take a note...
                             </div>
-
-                            <Input type="text" className='inputfield1'
-                                value={ShowPopup ? EditableValue.title : Initialvalue}
-                                onChange={(e) => FirstInputChange(e)} placeholder='Title' />
-
-
-                            <Input placeholder='Take a note...'
-                                value={ShowPopup ? EditableValue.note : SecondValue}
-                                onChange={(e) => SecondInputChange(e)}
-                                className='textareainput TextAreaInput'
-                            >
-                            </Input>
-
-                            <Radio.Group
-                                onChange={ShowPopup ? OnHandleRadioChange : HandleRadioUpdate}
-                                value={ShowPopup ? EditableValue.Radio : SelectedValue}
-                                style={{ marginBottom: "5px" }}>
-                                <Radio value={'a'}>Option A</Radio>
-                                <Radio value={'b'}>Option B</Radio>
-                                <Radio value={'c'}>Option C</Radio>
-                                <Radio value={'d'}>Option D</Radio>
-                            </Radio.Group>
-                            {/* <Space direction='horizontal'> */}
-                            <Button type="primary"
-                                onClick={ShowPopup ? () => OnSaveClick(EditableValue.id) : OnSubmitClick}
-                            >
-                                {ShowPopup ? "Save" : "Submit"}
-
-                            </Button>
-                            <Button type='primary'
-                                className='CancelButton'
-                                onClick={OnCloseClick}
-                            >Close
-                            </Button>
-                            <Button type='primary'
-                                className='CancelButton'
-                                onClick={OnResetClick}
-                            >Reset
-                            </Button>
-                            {/* </Space> */}
-                        </div>
-                        // </Space>
-                        :
-                        <div className="ClickedDiv" onClick={OnClickHandleEvent}
-                        >
-                            Take a note...
-                        </div>
-                }
-            </div>
+                    }
+                    {/* </div> */}
+                </Space >
+            </Card>
 
 
 
 
-            {/* card */}
-            <div className="card-container">
+            {/* < div className="card-container" > */}
+            <Space wrap='true' direction='horizontal' size='middle' style={{ padding: "10px" }}>
                 {/* const filteredData = data.filter((item) =>
                 item.title.toLowerCase().includes(searchQuery.toLowerCase())
                 ); */}
-                {todos
-                    .filter((item) =>
-                        SSearch
-                            ? item.title.toLowerCase() === SearchQuery.toLowerCase()
-                            : SelectedOptionss === "All"
-                                ? item.Radio === item.Radio
-                                : item.Radio === SelectedOptionss
-                    )
-                    .map((item) => (
-                        <div key={item.id} id={item.id} className='card'>
-                            <Card
+                {
+                    todos
+                        .filter((item) =>
+                            SSearch
+                                ? item.title.toLowerCase() === SearchQuery.toLowerCase()
+                                : SelectedOptionss === "All"
+                                    ? item.Radio === item.Radio
+                                    : item.Radio === SelectedOptionss
+                        )
+                        .map((item) => (
+                            // <div key={item.id} id={item.id} className='card'>
+                            // <Card align='center' hoverable size='5'>
+                            //     <Space direction='vertical'>
+                            <Card direction='vertical'
+                                // extra="lemon juice"
+                                bodyStyle={{ padding: "15px" }}
                                 title={item.title || "No title"}
-                                bordered={false}
+                                // title={<div style={{ padding: '10px' }}>{item.title || "No title"}</div>}
+                                hoverable
                             >
-                                <p>{item.note}</p>
-                                <p>checked: {item.Radio}</p>
+                                <Space direction='vertical' size={10}>
+                                    <p>{item.note}</p>
+                                    <p>checked: {item.Radio}</p>
+
+                                    <Space direction='horizontal' size={7}>
+                                        <Button
+                                            type="primary"
+                                            // className='UpdateButton'
+                                            onClick={() => OnUpdateClick(item)}
+                                        >
+                                            Update
+                                        </Button>
+
+                                        <Button
+                                            type="primary"
+                                            onClick={() => OnDeleteClick(item.id)}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </Space>
+                                </Space>
                             </Card>
-
-                            <Button
-                                type="primary"
-                                className='UpdateButton'
-                                onClick={() => OnUpdateClick(item)}
-                            >
-                                Update
-                            </Button>
-
-                            <Button
-                                type="primary"
-                                onClick={() => OnDeleteClick(item.id)}
-                            >
-                                Delete
-                            </Button>
-                        </div>
-                    ))}
-                {/* {SSearch ? todos.filter((item) => item.title.toLowerCase() === SearchQuery.toLowerCase()).map((item) => (
-                    <div key={item.id} id={item.id} className='card'>
-                        <Card
-                            title={item.title || "No title"}
-                            bordered={false}
-                        >
-                            <p>{item.note}</p>
-                            <p>checked: {item.Radio}</p>
-                        </Card>
-
-
-                        <Button type="primary" className='UpdateButton'
-                            onClick={() => UpdateValue(item)}
-                        > Update</Button>
-
-                        <Button type="primary"
-                            onClick={() => OnDeleteClick(item.id)}
-                        >Delete</Button>
-                    </div>
-                ))
-                    : todos.filter(item => SelectedOptionss === "All" ? item.Radio === item.Radio : item.Radio === SelectedOptionss).map((item) => (
-                        <div key={item.id} id={item.id} className='card'>
-                            <Card
-                                title={item.title || "No title"}
-                                bordered={false}
-                            >
-                                <p>{item.note}</p>
-                                <p>checked: {item.Radio}</p>
-                            </Card>
-
-
-                            <Button type="primary" className='UpdateButton'
-                                onClick={() => UpdateValue(item)}
-                            > Update</Button>
-
-                            <Button type="primary"
-                                onClick={() => OnDeleteClick(item.id)}
-                            >Delete</Button>
-                        </div>
-                    ))
-                } */}
-            </div>
-        </Content>
+                            // </div>
+                        ))
+                }
+            </Space >
+            {/* </div > */}
+        </Content >
     )
 }
 

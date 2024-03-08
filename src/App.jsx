@@ -11,10 +11,10 @@ function App() {
         <AppSider />
         <Layout>
           <AppHeader />
-          <Layout className='Layout'>
+          <Layout style={{ backgroundColor: "#fff" }}>
             <AppContent />
+            <AppFooter />
           </Layout>
-          <AppFooter />
         </Layout>
 
       </Layout >
