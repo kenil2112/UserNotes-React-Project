@@ -120,18 +120,22 @@ function AppContent() {
         <Content style={{ padding: "10px" }}
         // className="ContentCSS"
         >
-            <Card bodyStyle={{ padding: 8 }} >
-                <Space align='center' block='true'>
+            <Card bodyStyle={{ padding: 8 }}
+                style={{ width: "100%" }}>
+                <Space align='center' block='true' style={{ width: "100%" }}>
                     {
                         IsEdit ?
-                            <Space block='true' direction='vertical' size={CustomSize} >
+                            <Space block='true' direction='vertical' size={CustomSize} style={{ width: "100%" }}>
                                 {/* // <div className='ContentDiv'> */}
                                 {/* <div className='SearchDiv'> */}
                                 <Space
                                     direction="horizontal"
+                                    style={{ width: '100%' }}
                                 // size={'large'}
                                 >
+                                    {/* <div className="hrDiv" style={{ display: "flex", flexDirection: "row" }}> */}
                                     <Search placeholder="input search text"
+                                        style={{ width: "100%", marginRight: "10px" }}
                                         // className='SearchBar'
                                         value={SearchQuery}
                                         onChange={(e) => ChangeHandleSearch(e)}
@@ -142,6 +146,7 @@ function AppContent() {
                                     >
                                         Cancel
                                     </Button>
+                                    {/* </div> */}
                                 </Space>
                                 {/* </div> */}
                                 <Input type="text"
